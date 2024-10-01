@@ -52,9 +52,11 @@ export const login = async (req, res, next) => {
             return res.status(400).send("User Not Found!");
         }
         const auth = await compare(password, user.password);
+        console.log(password,user.password);
+        
 
         if (!auth) {
-            res.status(400).send("Password Is Incorrect");
+            return res.status(400).send("Password Is Incorrect");
         }
 
         res.cookie("jwt", createToken(email, user.id), {
@@ -186,3 +188,20 @@ export const removeProfileImage = async (req, res, next) => {
         return res.status(500).send("Internal Server Error");
     }
 }
+
+
+export const logOut = async (req, res, next) => {
+    try {
+        res.cookie("jwt",{
+            maxAge:1,secure:true,sameSite:"None"
+        })
+        return res.status(200).json({
+            messege: 'Logout Successfully'
+        })
+
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send("Internal Server Error");
+    }
+}
+
