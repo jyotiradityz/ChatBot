@@ -17,4 +17,4 @@ export const SEARCH_CONTACTS_ROUTE=`${CONTACTS_ROUTES}/search`
 
 
 export const MESSAGES_ROUTES=`/api/messages`
-const GET_ALL_MESSAGES_ROUTE=`${MESSAGES_ROUTES}/get-messages`
+export const GET_ALL_MESSAGES_ROUTE=`${MESSAGES_ROUTES}/get-messages`

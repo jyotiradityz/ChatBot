@@ -1,6 +1,9 @@
 import jwt from "jsonwebtoken"
 
 export const verifyToken = (req, res, next) => {
+
+    // console.log(req.cookies.jwt);
+    
     
     const token = req.cookies.jwt;
     if (!token) {
@@ -14,5 +17,5 @@ export const verifyToken = (req, res, next) => {
         req.userId = payload.userID;
         next();
     })
-
+    // next();
 }

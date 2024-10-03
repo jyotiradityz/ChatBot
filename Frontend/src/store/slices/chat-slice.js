@@ -1,12 +1,10 @@
 export const createChatSlide = (set, get) => ({
     selectedChatType: undefined,
     selectedChatData: undefined,
-
     selectedChatMesseges: [],
 
     setSelectedChatType: (selectedChatType) => set({ selectedChatType }),
     setSelectedChatData: (selectedChatData) => set({ selectedChatData }),
-
     setSelectedChatMesseges: (selectedChatMesseges) => set({ selectedChatMesseges }),
 
     closeChat: () => set({ selectedChatData: undefined, selectedChatType: undefined, selectedChatMesseges: [] }),

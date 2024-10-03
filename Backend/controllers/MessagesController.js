@@ -1,14 +1,11 @@
 import Messege from "../models/MessegeModel.js";
-export const getMessages = async (req, res, next) => {
-    try {
+export const getMessages = async (req, res) => {
+    try { 
         const user1  = req.userId;
-        const user2 = req.body.id;
-
-
+        const user2 = req.body.id;        
         if(!user1 || !user2){
             return res.status(400).send({message: "Please provide both user ids"});
         }
-        
         const messages = await Messege.find({ 
             $or: [
                 {
@@ -20,9 +17,7 @@ export const getMessages = async (req, res, next) => {
                     recipient: user1
                 }
             ]
-        }).sort({timestamp: 1});
-
-        
+        }).sort({timestamp: 1});        
         return res.status(200).json({ messages });
 
     } catch (err) {

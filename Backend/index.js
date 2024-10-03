@@ -33,7 +33,7 @@ app.use(express.json())
 
 app.use("/api/auth",authRoutes)
 app.use("/api/contacts",contactRoutes)
-app.use('/api/messages',messagesRoutes );
+app.use("/api/messages",messagesRoutes );
 
  
 const server = app.listen(PORT,()=>{

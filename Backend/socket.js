@@ -1,6 +1,5 @@
 import { Server as SokcetIOServer } from "socket.io";
 import Message from "./models/MessegeModel.js";
-import User from './models/UserModel.js';
 const setupSocket = (server) => {
 
     const io = new SokcetIOServer(server, {
@@ -32,9 +31,6 @@ const setupSocket = (server) => {
 
     const sendMessage = async (message) => {
 
-        console.log(message);
-
-
         const sendSocketId = userSocketMap.get(message.sender);
         const recipentSockerId = userSocketMap.get(message.recipient);
 
@@ -45,9 +41,6 @@ const setupSocket = (server) => {
         const messageData = await Message.findById(createMessage._id)
             .populate("sender", "id email firstName lastName image color")
             .populate("recipient", "id email firstName lastName image color");
-        
-        console.log(messageData);
-        
 
         if (recipentSockerId) {
             io.to(recipentSockerId).emit("receiveMessage", messageData);

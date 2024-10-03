@@ -27,15 +27,12 @@ export const SocketProvider = ({ children }) => {
             socket.current.on("connect", () => {
                 console.log(`socket Connected `);
             });
-            socket.current.on("connect_error", (err) => {
-                console.error("socket connection error: ", err);
-            });
+
 
             const handleReceiveMessage = (message) => {
                 const { selectedChatData, selectedChatType, addMessage } = useAppStore.getState();
-
-                if (selectedChatType!==undefined &&
-                    (selectedChatData._id === message.sender._id || selectedChatData._id === message.recipient._id)) {
+                
+                if (selectedChatType!==undefined && (selectedChatData._id === message.sender._id || selectedChatData._id === message.recipient._id)) {
                     addMessage(message);
                 }
             };

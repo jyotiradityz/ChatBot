@@ -14,9 +14,6 @@ const MessegeBar = () => {
     const [emojiPicker, setEmojiPicker] = useState(false);
     const socket = useSocket();
     const { selectedChatType, selectedChatData, userInfo } = useAppStore();
-
-    // console.log("Selected Chat Data: ", selectedChatData);
-    // console.log("Selected Chat Data: ", selectedChatType);
     
 
     useEffect(() => {
@@ -35,9 +32,8 @@ const MessegeBar = () => {
         setMessege((msg) => msg + emoji.emoji)
     }
 
-    const handleSendMessege = async () => {
+    const handleSendMessege = async (e) => {
         if (selectedChatType === "contact") {
-            
             socket.emit("sendMessage", {
                 sender: userInfo.id,
                 content: messege,
